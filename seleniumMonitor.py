@@ -14,7 +14,10 @@ from selenium import webdriver
 
 # set the url as Moshtix,
 url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
-
+options = webdriver.ChromeOptions()
+options.add_argument("user-data-dir=C:\\Users\\finnb\\AppData\\Local\\Google\\Chrome\\User Data")
+driver = webdriver.Chrome(chrome_options=options)
+driver.get(url)
 
 # while this is true (it is true by default),
 while True:
@@ -37,8 +40,7 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-        driver = webdriver.Chrome()
-        driver.get(url)
+
         select = driver.find_element_by_css_selector('#event-tickets-form > table > tbody > tr:nth-child(2) > td.col-quantity.col-quantity-216690 > select')
         select.selectByIndex(1)
         driver.find_element_by_css_selector('#event-buy-tickets').click()
