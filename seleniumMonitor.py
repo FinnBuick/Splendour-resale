@@ -14,8 +14,7 @@ from selenium import webdriver
 
 # set the url as Moshtix,
 url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
-driver = webdriver.Chrome()
-driver.get(url)
+
 
 # while this is true (it is true by default),
 while True:
@@ -38,8 +37,20 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-        select = driver.find_element(By.XPATH, '//*[@id="event-tickets-form"]/table/tbody/tr[2]/td[8]/select')
+        driver = webdriver.Chrome()
+        driver.get(url)
+        select = driver.find_element_by_css_selector('#event-tickets-form > table > tbody > tr:nth-child(2) > td.col-quantity.col-quantity-216690 > select')
         select.selectByIndex(1)
-        driver.find_element(By.XPATH, '//*[@id="event-buy-tickets"]').click()
+        driver.find_element_by_css_selector('#event-buy-tickets').click()
+        #next page
+        day = driver.find_element_by_css_selector('#attendee-individual-names-table > table:nth-child(2) > tbody > tr.attendee-row > td.attendee-dob.dob-column > div > select:nth-child(1)')
+        day.select_by_value('23')
+        month = driver.find_element_by_css_selector('#attendee-individual-names-table > table:nth-child(2) > tbody > tr.attendee-row > td.attendee-dob.dob-column > div > select:nth-child(2)')
+        month.select_by_value('AUG')
+        year = driver.find_element_by_css_selector('#attendee-individual-names-table > table:nth-child(2) > tbody > tr.attendee-row > td.attendee-dob.dob-column > div > select:nth-child(3)')
+        year.select_by_value('1996')
+
+        tcs = driver.find_element_by_css_selector('#accept-terms-conditions')
+        tcs.click()
 
         break

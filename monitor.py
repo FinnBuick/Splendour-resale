@@ -24,6 +24,7 @@ while True:
     # parse the downloaded homepage and grab all text, then,
     soup = BeautifulSoup(response.text, "lxml")
 
+
     # if the number of times the word "Google" occurs on the page is less than 1,
     if soup.find(class_="col-quantity col-quantity-216690").find('select') is None:
         # wait 60 seconds,
