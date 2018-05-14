@@ -16,8 +16,9 @@ from selenium import webdriver
 url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=C:\\Users\\finnb\\AppData\\Local\\Google\\Chrome\\User Data")
-driver = webdriver.Chrome(chrome_options=options)
+driver = webdriver.Chrome(executable_path="C:\\Program Files (x86)\\ChromeDriver\\chromedriver.exe" , chrome_options=options)
 driver.get(url)
+
 
 # while this is true (it is true by default),
 while True:
