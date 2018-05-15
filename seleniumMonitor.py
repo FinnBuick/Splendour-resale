@@ -8,6 +8,10 @@ from bs4 import BeautifulSoup
 import time
 
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 # This is a pretty simple script. The script downloads the homepage of VentureBeat, and if it finds some text, emails me.
 # If it does not find some text, it waits 60 seconds and downloads the homepage again.
@@ -16,6 +20,7 @@ from selenium import webdriver
 url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=C:\\Users\\finnb\\AppData\\Local\\Google\\Chrome\\User Data")
+#options.add_argument("--headless")
 driver = webdriver.Chrome(executable_path="C:\\Program Files (x86)\\ChromeDriver\\chromedriver.exe" , chrome_options=options)
 driver.get(url)
 
@@ -41,11 +46,14 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-
-        select = driver.find_element_by_css_selector('#event-tickets-form > table > tbody > tr:nth-child(2) > td.col-quantity.col-quantity-216690 > select')
-        select.selectByIndex(1)
+        driver.get(url)
+        select = Select(driver.find_element_by_css_selector('#event-tickets-form > table > tbody > tr:nth-child(2) > td.col-quantity.col-quantity-216690 > select'))
+        select.select_by_index(1)
         driver.find_element_by_css_selector('#event-buy-tickets').click()
         #next page
+
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "attendee-individual-names-table")))
+
         day = driver.find_element_by_css_selector('#attendee-individual-names-table > table:nth-child(2) > tbody > tr.attendee-row > td.attendee-dob.dob-column > div > select:nth-child(1)')
         day.select_by_value('23')
         month = driver.find_element_by_css_selector('#attendee-individual-names-table > table:nth-child(2) > tbody > tr.attendee-row > td.attendee-dob.dob-column > div > select:nth-child(2)')
