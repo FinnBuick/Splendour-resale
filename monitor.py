@@ -38,5 +38,6 @@ while True:
     # but if the word "Google" occurs any other number of times,
     else:
         webbrowser.open(url)
+        print(time.asctime())
 
         break
