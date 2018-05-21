@@ -13,6 +13,7 @@ import webbrowser
 # If it does not find some text, it waits 60 seconds and downloads the homepage again.
 
 # while this is true (it is true by default),
+count = 0
 while True:
     # set the url as Moshtix,
     url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
@@ -28,8 +29,9 @@ while True:
     # if the number of times the word "Google" occurs on the page is less than 1,
     if soup.find(class_="col-quantity col-quantity-216690").find('select') is None:
         # wait 60 seconds,
-        print("Trying again...")
-        #time.sleep(1)
+        print("Refresh #" + str(count))
+        count+=1
+        time.sleep(1)
         # continue with the script,
         continue
 
