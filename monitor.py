@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 # Import Time (to add a delay between the times the scape runs)
 import time
 
+import pyautogui
+
 import webbrowser
 
 # This is a pretty simple script. The script downloads the homepage of VentureBeat, and if it finds some text, emails me.
@@ -37,7 +39,7 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-        webbrowser.open(url)
+        pyautogui.click()
         print(time.asctime())
 
         break
