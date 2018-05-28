@@ -16,12 +16,13 @@ import webbrowser
 
 # while this is true (it is true by default),
 count = 0
+# set the url as Moshtix,
+url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
+# set the headers like we are a browser,
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
 while True:
-    # set the url as Moshtix,
-    url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
-    # set the headers like we are a browser,
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     # download the homepage
     response = requests.get(url, headers=headers)
     # parse the downloaded homepage and grab all text, then,
@@ -39,7 +40,7 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-        pyautogui.click()
+        pyautogui.click( )
         print(time.asctime())
 
         break
