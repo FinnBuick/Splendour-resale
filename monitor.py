@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 # Import Time (to add a delay between the times the scape runs)
 import time
 
-import pyautogui
-
+#import pyautogui
+import winsound
 import webbrowser
 
 # This is a pretty simple script. The script downloads the homepage of VentureBeat, and if it finds some text, emails me.
@@ -20,7 +20,8 @@ count = 0
 url = "http://www.moshtix.com.au/v2/event/splendour-in-the-grass-2018/103360"
 # set the headers like we are a browser,
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0'
+}
 
 while True:
     # download the homepage
@@ -30,7 +31,7 @@ while True:
 
 
     # if the number of times the word "Google" occurs on the page is less than 1,
-    if soup.find(class_="col-quantity col-quantity-216690").find('select') is None:
+    if soup.find(class_="col-quantity col-quantity-216701").find('select') is None:
         # wait 60 seconds,
         print("Refresh #" + str(count))
         count+=1
@@ -40,7 +41,9 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-        pyautogui.click( )
+        #pyautogui.click( )
+        winsound.PlaySound('pop.mp3', winsound.SND_FILENAME)
         print(time.asctime())
-
-        break
+        with open("log.txt", "a") as myfile:
+            myfile.write(time.asctime())
+        webbrowser.open(url)
