@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # Import Time (to add a delay between the times the scape runs)
 import time
 
-#import pyautogui
+import pyautogui
 import winsound
 import webbrowser
 
@@ -31,7 +31,7 @@ while True:
 
 
     # if the number of times the word "Google" occurs on the page is less than 1,
-    if soup.find(class_="col-quantity col-quantity-216701").find('select') is None:
+    if soup.find(class_="col-quantity col-quantity-216690").find('select') is None:
         # wait 60 seconds,
         print("Refresh #" + str(count))
         count+=1
@@ -41,9 +41,10 @@ while True:
 
     # but if the word "Google" occurs any other number of times,
     else:
-        #pyautogui.click( )
+        pyautogui.click()
         winsound.PlaySound('pop.mp3', winsound.SND_FILENAME)
         print(time.asctime())
         with open("log.txt", "a") as myfile:
             myfile.write(time.asctime())
-        webbrowser.open(url)
+        #webbrowser.open(url)
+        break;
