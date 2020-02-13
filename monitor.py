@@ -11,9 +11,6 @@ import pyautogui
 import winsound
 import webbrowser
 
-# This is a pretty simple script. The script downloads the homepage of VentureBeat, and if it finds some text, emails me.
-# If it does not find some text, it waits 60 seconds and downloads the homepage again.
-
 # while this is true (it is true by default),
 count = 0
 # set the url as Moshtix,
